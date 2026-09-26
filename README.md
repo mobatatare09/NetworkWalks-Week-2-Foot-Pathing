@@ -1,21 +1,48 @@
 # Network Security & Reconnaissance Labs — NetworkWalks
 
-Hands-on labs documenting passive and active reconnaissance, OSINT gathering, search engine dorking, and network scanning conducted as part of the NetworkWalks cybersecurity training programme.
+Practical reconnaissance, OSINT gathering, and network scanning labs completed as part of the NetworkWalks cybersecurity programme[cite: 1].
 
 ---
 
-## Lab Modules Overview
-
-| Directory | Topic | Key Focus |
-| :--- | :--- | :--- |
-| [`01-footprinting-multi-tools`](./01-footprinting-multi-tools/) | Foundational Footprinting | DNS lookup, Whois, Ping, Traceroute, and OSINT aggregation |
-| [`02-ghdb-dorking`](./02-ghdb-dorking/) | Google Hacking Database | Advanced search operators, directory exposure, error indexing |
-| [`03-maltego-transforms`](./03-maltego-transforms/) | Visual Entity Link Analysis | Domain infrastructure mapping, DNS records, affiliated entities |
-| [`04-theharvester-osint`](./04-theharvester-osint/) | Public Data Scraping | Subdomain discovery, exposed email addresses, and names |
-| [`05-network-scanning-zenmap`](./05-network-scanning-zenmap/) | Active Port & Host Discovery | TCP/UDP scanning, OS detection, service version enumeration |
+## 1. Footprinting with Multi-Tools
+* **Objective:** Establish baseline DNS, routing, and domain ownership data[cite: 1].
+* **Tools:** `whois`, `dig`, `nslookup`, `traceroute`.
+* **Key Steps:** Queried registrar and nameserver information via Whois; mapped mail and host records across DNS; traced routing paths to external gateways.
+* **Evidence:** `screenshots/01-multi-tools.png`
 
 ---
 
-## Legal & Ethical Disclaimer
+## 2. Google Hacking Database (GHDB)
+* **Objective:** Uncover publicly indexed sensitive files, directories, and login interfaces[cite: 1].
+* **Core Dorks:**
+  * `site:<target> intitle:"index of"`
+  * `site:<target> ext:log | ext:sql | ext:txt`
+  * `site:<target> inurl:admin | inurl:login`
+* **Evidence:** `screenshots/02-ghdb.png`
 
-All scanning and footprinting activities documented across this repository were performed strictly against authorized targets or deliberately vulnerable, pre-approved test environments with written consent. See [`docs/sample-permission-letter.md`](./docs/sample-permission-letter.md) for the rules of engagement format. Unauthorized network access or scanning is strictly illegal.
+---
+
+## 3. Link Analysis with Maltego
+* **Objective:** Map relationships between domains, netblocks, mail servers, and organizational entities[cite: 1].
+* **Key Steps:** Seeded the root domain; ran DNS and infrastructure transforms; visualised attack surface interconnectivity.
+* **Evidence:** `screenshots/03-maltego.png`
+
+---
+
+## 4. OSINT Gathering with theHarvester
+* **Objective:** Collect subdomains, public email addresses, and employee names[cite: 1].
+* **Command:** `theHarvester -d <target-domain> -l 500 -b duckduckgo,crtsh`
+* **Evidence:** `screenshots/04-theharvester.png`
+
+---
+
+## 5. Active Scanning with Zenmap
+* **Objective:** Identify live hosts, open ports, and running service versions[cite: 1].
+* **Profiles:** Intense Scan (`nmap -T4 -A -v <target>`) and Fast Scan (`nmap -F <target>`).
+* **Key Open Ports:** 21 (FTP), 22 (SSH), 80 (HTTP), 443 (HTTPS).
+* **Evidence:** `screenshots/05-zenmap.png`
+
+---
+
+## Legal & Compliance Note
+All footprinting and scanning activities were conducted strictly under an authorized permission letter and executed against authorized targets[cite: 1].
